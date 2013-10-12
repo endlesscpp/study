@@ -1,3 +1,10 @@
+
+/*
+ * revision 1
+ * Exercise 4.30
+ * rewrite the calculator to so that it computes with floating-point instead of integers
+ */
+
 /*
  * Simple integer arithmetic calculator
  * This is the sample of figure 4.1
@@ -18,9 +25,9 @@
 char token; /* global token variable */
 
 /* function prototypes for recursive calls */
-int expr(void);
-int term(void);
-int factor(void);
+float expr(void);
+float term(void);
+float factor(void);
 
 void error(void)
 {
@@ -38,7 +45,7 @@ void match(char expectedToken)
 
 int main(void)
 {
-    int result;
+    float result;
 
     /* load token with first character for lookahead */
     token = getchar();
@@ -46,16 +53,16 @@ int main(void)
     result = expr();
     
     if (token == '\n') /* the end of line */
-        printf("Result = %d\n", result);
+        printf("Result = %f\n", result);
     else
         error(); /* extraneous chars on line*/
 
     return 0;
 }
 
-int expr(void)
+float expr(void)
 {
-    int temp = term();
+    float temp = term();
 
     while (token == '+' || token == '-')
     {
@@ -75,9 +82,9 @@ int expr(void)
     return temp;
 }
 
-int term(void)
+float term(void)
 {
-    int temp = factor();
+    float temp = factor();
     while (token == '*')
     {
         match('*');
@@ -87,9 +94,9 @@ int term(void)
     return temp;
 }
 
-int factor(void)
+float factor(void)
 {
-    int temp = 0;
+    float temp = 0;
     if (token == '(')
     {
         match('(');
@@ -99,7 +106,7 @@ int factor(void)
     else if (isdigit(token))
     {
         ungetc(token, stdin);
-        scanf("%d", &temp);
+        scanf("%f", &temp);
         token = getchar(); /* get next char */
     }
     else
