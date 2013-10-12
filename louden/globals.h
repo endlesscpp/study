@@ -3,6 +3,11 @@
  * global types and vars for TINY compiler
  */
 
+
+/*
+ * add a dummy comment to test the GIT commit
+ */
+
 #ifndef _GLOBALS_H_
 #define _GLOBALS_H_
 
