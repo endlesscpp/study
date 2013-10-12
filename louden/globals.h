@@ -12,6 +12,10 @@
  * The dummy change 2 to test GIT commit
  */
 
+/*
+ * The dummy change 3
+ */
+
 #ifndef _GLOBALS_H_
 #define _GLOBALS_H_
 
