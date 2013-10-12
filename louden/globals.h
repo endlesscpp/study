@@ -8,6 +8,10 @@
  * add a dummy comment to test the GIT commit
  */
 
+/*
+ * The dummy change 2 to test GIT commit
+ */
+
 #ifndef _GLOBALS_H_
 #define _GLOBALS_H_
 
