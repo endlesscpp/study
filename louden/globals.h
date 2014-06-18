@@ -75,6 +75,62 @@ extern FILE* code;
 /* source line number for listing */
 extern int lineno;
 
+/*************************************************/
+/*              Syntax tree for parsing          */
+/*************************************************/
+
+typedef enum
+{
+    StmtK,
+    ExpK,
+} NodeKind;
+
+typedef enum
+{
+    IfK,
+    RepeatK,
+    AssignK,
+    ReadK,
+    WriteK,
+} StmtKind;
+
+typedef enum
+{
+    OpK,
+    ConstK,
+    IdK
+} ExpKind;
+
+/* ExpType is used for type checking */
+typedef enum
+{
+    Void,
+    Integer,
+    Boolean,
+} ExpType;
+
+#define MAX_CHILDREN 3
+
+typedef struct tagTreeNode
+{
+    struct tagTreeNode* child[ MAX_CHILDREN ];
+    struct tagTreeNode* sibling;
+    int lineno;
+    NodeKind nodekind;
+    union
+    {
+        StmtKind stmt;
+        ExpKind exp;
+    } kind;
+    union
+    {
+        TokenType op;
+        int val;
+        char* name;
+    } attr;
+    ExpType type; /* for type checking of exps */
+} TreeNode;
+
 
 /*************************************************/
 /*              Flag for tracing                 */

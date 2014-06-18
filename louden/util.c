@@ -4,7 +4,7 @@
 #include "globals.h"
 #include "util.h"
 
-static void print(const char* format, ...)
+void print(const char* format, ...)
 {
     va_list ap;
     va_start(ap, format);
@@ -72,5 +72,142 @@ void printToken(TokenType token, const char* tokenString)
         default: /* should never happen */
             print("Unknown token: %d\n", token);
     }
+}
+
+TreeNode* newStmtNode(StmtKind kind)
+{
+    TreeNode* t = (TreeNode*)malloc(sizeof(TreeNode));
+    int i;
+
+    if (t==NULL)
+    {
+        print("Out of memory error at line %d\n", lineno);
+        return NULL;
+    }
+
+    for (i = 0; i < MAX_CHILDREN; i++)
+        t->child[i] = NULL;
+    t->sibling = NULL;
+    t->nodekind = StmtK;
+    t->kind.stmt = kind;
+    t->lineno = lineno;
+
+    return t;
+}
+
+TreeNode* newExpNode(ExpKind kind)
+{
+    TreeNode* t = (TreeNode*)malloc(sizeof(TreeNode));
+    int i;
+
+    if (t == NULL)
+    {
+        print("Out of memory error at line %d\n", lineno);
+        return NULL;
+    }
+
+    for (i = 0; i < MAX_CHILDREN; i++)
+        t->child[i] = NULL;
+
+    t->sibling = NULL;
+    t->nodekind = ExpK;
+    t->kind.exp = kind;
+    t->lineno = lineno;
+    t->type = Void;
+
+    return t;
+}
+
+char* copyString(char* s)
+{
+    return strdup(s);
+}
+
+/* used by printTree() to store the current number of spaces to indent */
+static int s_indentno = 0;
+
+#define INDENT      s_indentno += 4
+#define UNINDENT    s_indentno -= 4
+
+static void printSpaces(void)
+{
+    int i;
+    for (i = 0; i < s_indentno; i++)
+        print(" ");
+}
+
+static void printStmtNode(TreeNode* tree)
+{
+    switch (tree->kind.stmt)
+    {
+        case IfK:
+            print("If\n");
+            break;
+        case RepeatK:
+            print("Repeat\n");
+            break;
+        case AssignK:
+            print("Assign to: %s\n", tree->attr.name);
+            break;
+        case ReadK:
+            print("Read: %s\n", tree->attr.name);
+            break;
+        case WriteK:
+            print("Write\n");
+            break;
+        default:
+            print("Unknown ExpNode kind\n");
+            break;
+    }
+}
+
+static void printExpNode(TreeNode* tree)
+{
+    switch (tree->kind.exp)
+    {
+        case OpK:
+            print("Op: ");
+            printToken(tree->attr.op, "\0"); // TODO: why use \0?
+            break;
+        case ConstK:
+            print("const: %d\n", tree->attr.val);
+            break;
+        case IdK:
+            print("Id: %s\n", tree->attr.name);
+            break;
+        default:
+            print("Unknown ExpNode kind\n");
+            break;
+    }
+}
+
+void printTree(TreeNode* tree)
+{
+    int i;
+    INDENT;
+
+    while (tree != NULL)
+    {
+        printSpaces();
+        if (tree->nodekind == StmtK)
+        {
+            printStmtNode(tree);
+        }
+        else if(tree->nodekind == ExpK)
+        {
+            printExpNode(tree);
+        }
+        else
+        {
+            print("Unknown node kind\n");
+        }
+
+        for (i = 0; i < MAX_CHILDREN; i++)
+            printTree(tree->child[i]);
+
+        tree = tree->sibling;
+    }
+
+    UNINDENT;
 }
 

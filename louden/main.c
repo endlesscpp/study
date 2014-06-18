@@ -3,12 +3,14 @@
  * Main program for TINY compiler
  */
 #include "globals.h"
-#define NO_PARSE TRUE
+#include "util.h"
+#define NO_PARSE FALSE
 
 #if NO_PARSE
     #include "scan.h"
 #else
-    // do nothing at now
+    // Only include the parse.h at now. The analyzer if not included
+    #include "parse.h" 
 #endif
 
 int lineno = 0;
@@ -19,6 +21,7 @@ FILE* code;
 // set tracing flag
 int EchoSource = TRUE;
 int TraceScan = TRUE;
+int TraceParse = TRUE;
 
 int Error = FALSE;
 
@@ -52,8 +55,17 @@ int main(int argc, char* argv[])
     listing = stdout;
     fprintf(listing, "\nTINY COMPILATION: %s\n", src_file);
 
+#if NO_PARSE
     while (getToken() != ENDFILE)
         ;
+#else
+    TreeNode* syntaxTree = parse();
+    if (TraceParse)
+    {
+        print("\nSyntax tree:\n");
+        printTree(syntaxTree);
+    }
+#endif
 
     fclose(source);
 

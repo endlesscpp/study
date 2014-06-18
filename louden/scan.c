@@ -18,7 +18,7 @@ typedef enum
 } StateType;
 
 /* lexme of identifier or reserved word */
-char tokenString[MAX_TOKEN_LEN + 1];
+char g_tokenString[MAX_TOKEN_LEN + 1];
 
 /* length of the input buffer for source code lines */
 #define BUF_CAPACITY 256
@@ -26,15 +26,6 @@ char tokenString[MAX_TOKEN_LEN + 1];
 static char lineBuf[BUF_CAPACITY];   /* hold the current line */
 static int  linepos = 0;        /* current position in LineBuf */
 static int  bufsize = 0;        /* current size of buffer string */
-
-/* a utility function to print string to listing */
-static void print(const char* format, ...)
-{
-    va_list ap;
-    va_start(ap, format);
-    vfprintf(listing, format, ap);
-    va_end(ap);
-}
 
 /*
  * Feteches the next non-blank character from lineBuf,
@@ -213,20 +204,20 @@ TokenType getToken(void)
         } //end switch( state )
 
         if (save && tokenStringIndex <= MAX_TOKEN_LEN)
-            tokenString[tokenStringIndex++] = c;
+            g_tokenString[tokenStringIndex++] = c;
 
         if (state == DONE)
         {
-            tokenString[tokenStringIndex] = '\0';
+            g_tokenString[tokenStringIndex] = '\0';
             if (currToken == ID)
-                currToken = reservedLookup(tokenString);
+                currToken = reservedLookup(g_tokenString);
         }
     }// end while (state != DONE)
 
     if (TraceScan) 
     {
         print("\t%d: ", lineno);
-        printToken(currToken, tokenString);
+        printToken(currToken, g_tokenString);
     }
 
     return currToken;

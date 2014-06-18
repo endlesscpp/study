@@ -8,7 +8,7 @@
 #define MAX_TOKEN_LEN 40
 
 /* array store the lexme of each token */
-extern char tokenString[MAX_TOKEN_LEN+1];
+extern char g_tokenString[MAX_TOKEN_LEN+1];
 
 /* function returns the next token in source file */
 TokenType getToken(void);
