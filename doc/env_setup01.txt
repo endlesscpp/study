@@ -1,0 +1,28 @@
+0. how to set the meta key
+https://askubuntu.com/questions/29731/rebind-alt-key-to-win-using-setxkbmap
+setxkbmap -option altwin:meta_win
+https://wiki.archlinux.org/index.php/Keyboard_configuration_in_Xorg
+
+in ~/.profile:
+echo "$(setxkbmap -option altwin:meta_win)"
+
+1. how to disable the super key.
+https://askubuntu.com/questions/105558/how-do-i-disable-the-super-key
+
+2. config the vpn
+https://www.litcc.com/2016/12/29/Ubuntu16-shadowsocks-pac/
+
+3. install the trash-cli
+sudo apt install trash-cli
+
+4. TODO: install chrome
+1) sudo wget https://repo.fdzh.org/chrome/google-chrome.list -P /etc/apt/sources.list.d/
+2) wget -q -O - https://dl.google.com/linux/linux_signing_key.pub  | sudo apt-key add -
+3) sudo apt-get update
+4) sudo apt-get install google-chrome-stable
+5) /usr/bin/google-chrome-stable
+reference: https://jingyan.baidu.com/article/335530da98061b19cb41c31d.html
+
+5. TODO: configure the vimrc
+
+
