@@ -1,0 +1,8 @@
+ADD_EXECUTABLE(hello main.c)
+set(EXECUTABLE_OUT_PATH ${PROJECT_BINARY_DIR}/bin)
+
+install(TARGETS hello
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION LIB
+        )
