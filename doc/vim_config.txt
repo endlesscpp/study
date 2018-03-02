@@ -1,0 +1,39 @@
+1. install vundle. 
+refer to:
+https://www.jianshu.com/p/d908ce81017a?nomobile=yes
+http://blog.csdn.net/mr_zing/article/details/44263385
+https://github.com/VundleVim/Vundle.vim#quick-start
+https://github.com/Valloric/YouCompleteMe
+http://valloric.github.io/YouCompleteMe/#ubuntu-linux-x64
+
+1.1
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+1.2 
+config the plugins. Please refer to the .vimrc
+1.3
+Launch vim and run :PluginInstall
+To install from command line: vim +PluginInstall +qall
+
+2.install YCM By git:
+mkdir ~/.vim/bundle/
+cd ~/.vim/bundle/
+git clone --recursive https://github.com/Valloric/YouCompleteMe.git
+git submodule update --init --recursive
+
+or install ycm by vundle
+Bundle 'Valloric/YouCompleteMe'
+
+3. compile YCM:
+sudo apt-get install build-essential cmake
+sudo apt-get install python-dev python3-dev
+cd ~/.vim/bundle/YouCompleteMe
+./install.py --clang-completer
+
+4. provide compile flag to clang
+option1: use a compilation database
+4.1 for cmake: -DCMAKE_EXPORT_COMPILE_COMMANDS=ON or add set( CMAKE_EXPORT_COMPILE_COMMANDS ON ) to CMakeLists.txt
+Here can: mkdir build;cd build;cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..;copy the json to ../
+4.2 gnu make: check Bear.
+options: provide the flags manually.
+
+
