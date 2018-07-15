@@ -1,0 +1,18 @@
+# install the samba
+sudo apt install samba
+
+# edit the /etc/samba/smb.conf
+[special]
+    path = /home/two/onlytwo 
+    read only = no
+    writeable = yes 
+    browseable = yes 
+    valid users = testuser 
+    create mask = 0640 
+    directory mask = 0750
+
+# add the user to samba users
+sudo smbpasswd -a testuser
+
+# restart service
+sudo service smbd restart
