@@ -1,0 +1,29 @@
+# step 1: 安装必要的一些系统工具
+sudo apt-get update
+sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common
+# step 2: 安装GPG证书
+curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
+# Step 3: 写入软件源信息
+sudo add-apt-repository "deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
+# Step 4: 更新并安装 Docker-CE
+sudo apt-get -y update
+sudo apt-get -y install docker-ce
+
+#
+# bai, use docker withour sudo
+#
+# add docker group
+sudo groupadd docker
+# add user to docker, then logout and login again
+sudo gpasswd -a ${USER} docker
+# restart service
+sudo service docker restart
+# switch session to new group
+newgrp - docker
+
+
+refs:
+https://yq.aliyun.com/articles/110806?spm=a2c4e.11153940.blogcont29941.13.520269d6p5XgYC
+https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository
+http://www.runoob.com/docker/docker-container-connection.html
+

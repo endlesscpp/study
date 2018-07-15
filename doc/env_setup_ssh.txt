@@ -24,6 +24,9 @@ ssh-keygen
 cd .ssh
 cat id_rsa.pub >> authorized_keys
 
+# can also copy the public key from local to server by:
+ssh-copy-id bai@192.168.1.104
+
 #enable can login by RSA key
 RSAAuthentication yes
 PubkeyAuthentication yes
@@ -37,4 +40,16 @@ or
 #
 # download public key to local
 #
- scp -r bai@192.168.0.104:/home/bai/.ssh/id_rsa ~/.ssh/id_rsa
+scp -r bai@192.168.0.104:/home/bai/.ssh/id_rsa ~/.ssh/id_rsa
+
+#
+# Tips
+# The ControlMaster in ssh. 
+#
+# add below in .ssh/config
+Host *
+ControlMaster auto
+ControlPath ~/.ssh/master-socket/%r@%h:%p
+#ControlPath ~/.ssh/%r@%h:%p
+ControlPersist 3s
+
