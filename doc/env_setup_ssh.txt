@@ -1,0 +1,40 @@
+# Install
+sudo apt install openssh-server
+
+# check is is running
+ps -e | grep ssh
+
+# open ssh server
+/etc/init.d/ssh start
+
+# config(optional)
+vim /etc/ssh/sshd_config
+
+# restart
+/etc/init.d/ssh restart
+
+#
+# config login by rsa private key
+#
+
+# gen key
+ssh-keygen
+
+# install public key on server
+cd .ssh
+cat id_rsa.pub >> authorized_keys
+
+#enable can login by RSA key
+RSAAuthentication yes
+PubkeyAuthentication yes
+PermitRootLogin yes # config if root user can login (optional)
+
+# restart
+service ssh restart
+or
+/etc/init.d/ssh restart
+
+#
+# download public key to local
+#
+ scp -r bai@192.168.0.104:/home/bai/.ssh/id_rsa ~/.ssh/id_rsa
