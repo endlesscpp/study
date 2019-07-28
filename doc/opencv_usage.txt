@@ -1,0 +1,41 @@
+# import as static library
+Attention the BUILD-PNG WITH-PNG cmake option.
+
+#Install GTK is needed:
+#list all installed pkg:
+pkg-config --list-all
+
+#show mod version
+pkg-config --modversion gtk+-2.0
+
+#install GTK
+sudo apt install gnome-devel
+
+#use it in commandline
+gcc -o gtk_test gtk_test.c `pkg-config --cflags --libs gtk+-2.0`
+
+#use it in cmake
+find_package( GTK2 REQUIRED )
+message( ${GTK2_LIBRARIES} )
+
+target_link_libraries( DisplayImage 
+libopencv_imgcodecs.a 
+libopencv_imgproc.a
+libopencv_highgui.a
+libopencv_core.a
+liblibpng.a 
+liblibjpeg-turbo.a
+liblibjasper.a
+libade.a
+libquirc.a
+libippiw.a
+libippicv.a
+libIlmImf.a
+libittnotify.a
+libzlib.a
+-ldl
+-lpthread
+${GTK2_LIBRARIES}
+)
+
+
