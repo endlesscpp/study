@@ -2,6 +2,7 @@
  *
  * The main prog.c
  */
+#include "demo.h"
 
 int main()
 {

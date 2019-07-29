@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "demo.h"
 
 void func_mod1()
 {

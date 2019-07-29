@@ -1,0 +1,13 @@
+# check if has debug info
+objdump -h a.out | grep debug
+
+#check the exported symbol in so
+nm -gC libhello.so	# -C demangled the symbol
+objdump -TC libhello.so
+
+#check imported symbol
+objdump -T a.out # check the *UND*
+
+#check depend so
+objdump -p a.out | grep NEEDED
+ldd a.out
