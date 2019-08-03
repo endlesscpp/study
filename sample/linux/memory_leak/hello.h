@@ -1,3 +1,10 @@
+/**
+ * @file hello.h
+ * The hello header file
+ * Used to test the memory leak
+ * :)
+ */
+
 #ifndef _MEMORY_LEAK_HELLO_H_
 #define _MEMORY_LEAK_HELLO_H_
 
@@ -6,7 +13,16 @@ extern "C"
 {
 #endif
 
+/**
+ * the brief desc for hello.
+ */
 void hello();
+
+
+/**
+ * the brief desc for world.
+ */
+void world();
 
 #ifdef __cplusplus
 }
