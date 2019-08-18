@@ -11,3 +11,10 @@ objdump -T a.out # check the *UND*
 #check depend so
 objdump -p a.out | grep NEEDED
 ldd a.out
+
+#enable core
+ulimit -c unlimited
+ulimit -c 0
+# check the ulimit
+ulimit -c
+
