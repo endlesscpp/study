@@ -16,3 +16,14 @@ sudo smbpasswd -a testuser
 
 # restart service
 sudo service smbd restart
+
+[share]
+comment = Ubuntu Share
+path = /your/samba/share
+read only = false
+browsable = yes
+guest ok = yes
+read only = yes
+write list = user1 user2 user3
+create mask = 0755
+directory mask = 0755

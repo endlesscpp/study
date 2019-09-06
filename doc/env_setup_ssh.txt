@@ -46,7 +46,9 @@ scp -r bai@192.168.0.104:/home/bai/.ssh/id_rsa ~/.ssh/id_rsa
 # Tips
 # The ControlMaster in ssh. 
 #
+
 # add below in .ssh/config
+# first mkdir ~/.ssh/master-socket folder
 Host *
 ControlMaster auto
 ControlPath ~/.ssh/master-socket/%r@%h:%p
