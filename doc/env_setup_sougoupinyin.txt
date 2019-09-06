@@ -1,0 +1,6 @@
+1. download the deb
+2. sudo apt install -f
+3. sudo dpkg -i sougoupinyin_*.deb
+4. go to System->Language Support, change iBus to fcitx.
+5. logout and login again. Go to Input Method configuration, click '+', add sogo.
+That's all. Good luck!
