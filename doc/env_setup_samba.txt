@@ -13,17 +13,21 @@ sudo apt install samba
 
 # add the user to samba users
 sudo smbpasswd -a testuser
+# del samba user
+sudo smbpasswd -x testuser
 
 # restart service
 sudo service smbd restart
 
+# refs: https://www.samba.org/samba/docs/using_samba/ch09.html
+# first pass samba security mechanism, then pass file/dir normal unix file/dir permission.
+# a readonly share, writable for user1/user2/user3
 [share]
 comment = Ubuntu Share
 path = /your/samba/share
-read only = false
+read only = true # writeable = false
 browsable = yes
 guest ok = yes
-read only = yes
 write list = user1 user2 user3
 create mask = 0755
 directory mask = 0755
