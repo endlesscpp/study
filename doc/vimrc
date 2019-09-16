@@ -1,0 +1,48 @@
+set nocompatible
+set backspace=indent,eol,start
+set incsearch
+set hlsearch
+
+set showcmd		" Show (partial) command in status line.
+set showmatch		" Show matching brackets.
+set ignorecase		" Do case insensitive matching
+set smartcase		" Do smart case matching
+set autowrite		" Automatically save before commands like :next and :make
+set hidden		" Hide buffers when they are abandoned
+
+set number
+
+" set tab width
+set tabstop=4
+set expandtab
+set softtabstop=4
+
+" set auto shift width
+set shiftwidth=4
+
+" set smart indent
+set autoindent
+set smartindent
+
+" set title
+set titlestring=%t
+
+"turn syntax
+syntax on
+
+" key mapping for delete/paste
+"let mapleader = "\<SPACE>"
+let mapleader = ","
+vnoremap <Leader>y "9y
+nnoremap <Leader>y "9y
+vnoremap <Leader>d "9d
+nnoremap <Leader>d "9d
+vnoremap <Leader>p "9p
+nnoremap <Leader>p "9p
+"inoremap <Leader>p <ESC>"9p
+vnoremap <Leader>P "9P
+nnoremap <Leader>P "9P
+"inoremap <Leader>P <ESC>"9P
+
+
+
