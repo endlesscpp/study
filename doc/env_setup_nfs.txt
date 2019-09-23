@@ -1,0 +1,48 @@
+#install nfs client on Ubuntu
+sudo apt install nfs-common
+
+#install nfs server on Ubuntu
+sudo apt install nfs-kernel-server
+
+#check nfs server status
+sudo systemctl status nfs-server
+
+#start nfs service
+sudo systemctl start nfs-server
+
+#create nfs share
+sudo vim /etc/exports
+add things like below:
+/mnt    <server-ip>
+/mnt    *(rw,sync,no_subtree_check) #for all clients. may need 'chmod 777' for clients to have write access.
+
+#refresh the nfs table
+sudo exportfs -a
+
+########################################
+# mount on client side
+########################################
+showmount -e 192.168.3.110
+
+#mount it
+sudo mount -t nfs -o revport,rw 192.168.3.110:/home/bai/study /mnt/study2
+
+#umount
+sudo umount /mnt/study2
+
+#remove the .DS_Store on Mac:
+defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+
+disable all users:
+sudo defaults write /System/Library/User\ Template/English.lproj/Library/Preferences/com.apple.desktopservices DSDontWriteNetworkStores true
+
+
+
+
+refs:
+https://www.poftut.com/how-to-mount-nfs-share-in-linux-and-windows/
+https://www.wdiaz.org/how-to-mount-nfs-share-on-mac/
+
+
+
+
