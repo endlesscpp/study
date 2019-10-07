@@ -27,6 +27,7 @@ static int mutexTryLock(const char* name) {
     }
 
     if (bind(sockfd, (struct sockaddr*)&addr, sizeof(addr)) == -1) {
+        close(sockfd);
         perror("bind");
         return -1;
     }
