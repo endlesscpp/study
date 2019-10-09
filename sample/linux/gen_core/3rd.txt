@@ -6,3 +6,17 @@ breakPad: https://github.com/svn2github/google-breakpad
 https://blog.csdn.net/mba16c35/article/details/54178067
 https://www.jianshu.com/p/16b0b2fd8c0e
 https://www.jianshu.com/p/5f8f6d95b79c
+
+
+http://stackoverflow.com/questions/4636456/how-to-get-a-stack-trace-for-c-using-gcc-with-line-number-information
+
+###gdb via shell:
+just write all the commands in a file, lets say file.txt. Pass this file in --command.
+
+gdb --command=file.txt exe core_file
+
+The content of file.txt
+
+bt
+quit
+
