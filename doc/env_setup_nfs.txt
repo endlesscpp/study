@@ -25,7 +25,7 @@ sudo exportfs -a
 showmount -e 192.168.3.110
 
 #mount it
-sudo mount -t nfs -o revport,rw 192.168.3.110:/home/bai/study /mnt/study2
+sudo mount -t nfs -o resvport,rw 192.168.3.110:/home/bai/study /mnt/study2
 
 #umount
 sudo umount /mnt/study2

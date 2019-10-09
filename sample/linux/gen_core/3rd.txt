@@ -1,0 +1,8 @@
+coffeeCatch
+breakPad
+https://www.zhihu.com/question/19614213
+coffeeCatch: https://github.com/xroche/coffeecatch
+breakPad: https://github.com/svn2github/google-breakpad
+https://blog.csdn.net/mba16c35/article/details/54178067
+https://www.jianshu.com/p/16b0b2fd8c0e
+https://www.jianshu.com/p/5f8f6d95b79c
