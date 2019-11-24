@@ -37,3 +37,11 @@ Here can: mkdir build;cd build;cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..;copy 
 options: provide the flags manually.
 
 
+compile:
+software-properties-gtk, then select the source option
+
+sudo apt-get build-dep vim-gtk # or vim-gnome, if you prefer.
+
+./configure --enable-gui=gtk2 --enable-python3interp=yes
+
+

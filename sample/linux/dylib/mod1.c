@@ -3,7 +3,7 @@
 #define _GNU_SOURCE
 #include <dlfcn.h>
 
-
+#if 0
 typedef struct DL_info {
     const char* dli_fname;
     void* dli_fbase;
@@ -49,13 +49,14 @@ static string getSelfPath() {
     return selfPath;
 }
 
+#endif
 
 void func_mod1()
 {
     printf("In func_mod1()...\n");
-    struct DL_info dlinfo = {0};
-    dladdr(func_mod1, &dlinfo);
+    //struct DL_info dlinfo = {0};
+    //dladdr(func_mod1, &dlinfo);
 
-    printf("so path = %s\n", dlinfo.dli_fname);
+    //printf("so path = %s\n", dlinfo.dli_fname);
 
 }
