@@ -2,6 +2,7 @@
 #define OAK_SINGLE_THREAD_EXECUTOR_H
 #include <thread>
 #include <memory>
+
 #include <condition_variable>
 #include <mutex>
 #include <deque>
@@ -10,6 +11,7 @@
 namespace oak {
 class ITask {
 public:
+    virtual ~ITask() = default;
     virtual void run() = 0;
     virtual int getDebugId() = 0;
 };
