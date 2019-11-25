@@ -1,0 +1,5 @@
+Q: where gcc find the .h file?
+A: `gcc -print-prog-name=cc1plus` -v
+`gcc -print-prog-name=cc1` -v
+
+refs: https://askubuntu.com/questions/573417/where-are-header-files-for-gcc-located
