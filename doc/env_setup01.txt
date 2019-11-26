@@ -25,4 +25,7 @@ reference: https://jingyan.baidu.com/article/335530da98061b19cb41c31d.html
 
 5. TODO: configure the vimrc
 
+6. invert the Fn key with Mac keyboard
+https://superuser.com/questions/1162318/how-to-reverse-fn-f-key-behaviour-in-ubuntu-on-mac
+
 
