@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <vector>
 #include <string>
+#include <list>
 
 using namespace std;
 
@@ -36,6 +37,10 @@ int main() {
     {
         v.push_back(new BigNumber(i));
     }
+
+    std::list<BigNumber*> list;
+    std::list<BigNumber*>::iterator it = list.begin();
+    list.erase(it);
 
     return 0;
 }

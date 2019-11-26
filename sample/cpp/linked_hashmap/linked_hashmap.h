@@ -7,14 +7,13 @@
 namespace oak
 {
 template<typename K, typename V>
-class LinkedListMap {
-    private:
+class LinkedHashMap {
+    public:
         struct ListNode {
             K key;
             V data;
         };
 
-    public:
         struct Iterator {
             typedef ListNode* Pointer;
             typedef ListNode& Reference;
@@ -82,6 +81,11 @@ class LinkedListMap {
             {
             }
 
+            ConstIterator(const Iterator& iter)
+                : mListIter(iter.mListIter)
+            {
+            }
+
             Reference operator*() const noexcept
             {
                 return *mListIter;
@@ -131,11 +135,11 @@ class LinkedListMap {
             typename std::list<ListNode>::const_iterator mListIter;
         };
     public:
-        LinkedListMap()
+        LinkedHashMap()
         {
         }
 
-        ~LinkedListMap()
+        ~LinkedHashMap()
         {
         }
 
@@ -160,7 +164,27 @@ class LinkedListMap {
             mMap.erase(it);
         }
 
-        bool find(const K& key, V* pVal)
+        Iterator erase(ConstIterator position)
+        {
+            auto listIter = position.mListIter;
+            const K& key = listIter->key;
+            auto mapIt = mMap.find(key);
+            if (mapIt != mMap.end()) {
+                mMap.erase(mapIt);
+            }
+
+            auto next = mList.erase(listIter);
+            return Iterator{next};
+        }
+
+        void popFront()
+        {
+            if (!empty()) {
+                erase(this->begin());
+            }
+        }
+
+        bool find(const K& key, V* pVal) const
         {
             auto it = mMap.find(key);
             if (it == mMap.end()) {
@@ -173,31 +197,32 @@ class LinkedListMap {
             return true;
         }
 
-        int size() const noexcept {
+        int size() const 
+        {
             return mList.size();
         }
 
-        bool empty() const noexcept
+        bool empty() const 
         {
             return mList.empty();
         }
 
-        Iterator begin() noexcept
+        Iterator begin() 
         {
             return Iterator(mList.begin());
         }
 
-        Iterator end() noexcept
+        Iterator end() 
         {
             return Iterator(mList.end());
         }
 
-        ConstIterator begin() const noexcept
+        ConstIterator begin() const
         {
             return ConstIterator(mList.begin());
         }
 
-        ConstIterator end() const noexcept
+        ConstIterator end() const
         {
             return ConstIterator(mList.end());
         }
