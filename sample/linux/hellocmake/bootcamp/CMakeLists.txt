@@ -14,5 +14,29 @@ set(SRC_LIST src/main.c
 #message(STATUS "This is SOURCE dir " ${BOOTCAMP_SOURCE_DIR})
 
 add_executable(bootcamp ${SRC_LIST})
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
+#set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
 
 add_subdirectory(test)
+
+# if DESTINATION path start with '/', it absolute path; else its relative path
+# to ${CMAKE_INSTALL_PREFIX}
+# RUNTIME / ARCHIVE / LIBRARY
+INSTALL(TARGETS bootcamp
+    RUNTIME DESTINATION bin
+    )
+
+INSTALL(FILES ./README.md 
+    DESTINATION doc
+    )
+
+# pay attention to the 'EXCLUDE' pattern
+INSTALL(DIRECTORY include/
+    DESTINATION include
+    PATTERN "*.toexclude" EXCLUDE
+    )
+
+# install the script
+INSTALL(PROGRAMS run_bootcamp.sh
+    DESTINATION bin
+    )

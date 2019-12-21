@@ -44,4 +44,8 @@ sudo apt-get build-dep vim-gtk # or vim-gnome, if you prefer.
 
 ./configure --enable-gui=gtk2 --enable-python3interp=yes
 
+5. keymapping
+let mapleader = ","
+nnoremap <Leader>j :YcmCompleter GoTo<CR>
+
 
