@@ -49,3 +49,23 @@ let mapleader = ","
 nnoremap <Leader>j :YcmCompleter GoTo<CR>
 
 
+tips:
+:Termdebug
+C-W L(attention use L rather than l)
+C-W N(switch between normal mode and insert mode)
+
+
+###Sessions
+:mksession my.vis   # save
+:source my.vis      # load
+vim -S my.vis       # open
+
+###airline
+:bn
+:bp
+:b <buffer-name>
+:b1,2,...n
+:bd (close)
+:bw (close directly, discard the change)
+
+

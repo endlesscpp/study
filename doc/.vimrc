@@ -56,6 +56,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'a.vim'
+Plugin 'vim-airline/vim-airline'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -64,6 +65,10 @@ set nu
 set completeopt=longest,menu
 let g:ycm_key_invoke_completion = '<F9>'
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+let g:ycm_always_populate_location_list = 1
+nnoremap <Leader>j :YcmCompleter GoTo<CR>
+
+let g:airline#extensions#tabline#enabled = 1
 
 " debug
 :packadd termdebug
@@ -73,11 +78,11 @@ set sessionoptions=blank,winsize,tabpages,resize
 
 " clang-format
 " map <C-K> :py3f ./.vim/clang-format.py<cr>
-map = :py3f ./.vim/clang-format.py<cr>
+map = :py3f ~/.vim/clang-format.py<cr>
 
 function! Formatonsave()
   let l:formatdiff = 1
-  py3f ./.vim/clang-format.py
+  py3f ~/.vim/clang-format.py
 endfunction
-autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
+autocmd BufWritePre *.h,*.c,*.cc,*.cpp call Formatonsave()
 
