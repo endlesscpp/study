@@ -33,6 +33,14 @@ cd ~/.vim/bundle/YouCompleteMe
 option1: use a compilation database
 4.1 for cmake: -DCMAKE_EXPORT_COMPILE_COMMANDS=ON or add set( CMAKE_EXPORT_COMPILE_COMMANDS ON ) to CMakeLists.txt
 Here can: mkdir build;cd build;cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..;copy the json to ../
+
+IF( EXISTS "${CMAKE_CURRENT_BINARY_DIR}/compile_commands.json" )
+  EXECUTE_PROCESS( COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    ${CMAKE_CURRENT_BINARY_DIR}/compile_commands.json
+    ${CMAKE_CURRENT_SOURCE_DIR}/compile_commands.json
+  )
+ENDIF()
+
 4.2 gnu make: check Bear.
 options: provide the flags manually.
 
