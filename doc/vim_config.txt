@@ -76,4 +76,8 @@ vim -S my.vis       # open
 :bd (close)
 :bw (close directly, discard the change)
 
+### copy/paste
+1. use the name register. such as the clipboard "+y / "+p
+2. or after paste, use 'gv' to reselect last selected visual area.
+
 

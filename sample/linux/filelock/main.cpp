@@ -41,7 +41,7 @@ static void mutexUnlock(int sockfd) {
 }
 
 static int lockRegion(int fd, int cmd, short type, int offset, int len) {
-    struct flock lock = {0};
+    struct flock lock = {};
     lock.l_type = type;
     lock.l_whence = SEEK_SET;
     lock.l_start = offset;
