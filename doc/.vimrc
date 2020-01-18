@@ -35,15 +35,15 @@ syntax on
 " key mapping for delete/paste
 "let mapleader = "\<SPACE>"
 let mapleader = ","
-vnoremap <Leader>y "ay
-nnoremap <Leader>y "ay
-vnoremap <Leader>d "ad
-nnoremap <Leader>d "ad
-vnoremap <Leader>p "ap
-nnoremap <Leader>p "ap
+vnoremap <Leader>y "+y
+nnoremap <Leader>y "+y
+vnoremap <Leader>d "+d
+nnoremap <Leader>d "+d
+vnoremap <Leader>p "+p
+nnoremap <Leader>p "+p
 "inoremap <Leader>p <ESC>"ap
-vnoremap <Leader>P "aP
-nnoremap <Leader>P "aP
+vnoremap <Leader>P "+P
+nnoremap <Leader>P "+P
 "inoremap <Leader>P <ESC>"aP
 
 " set the runtime path to include Vundle and initialize
@@ -57,6 +57,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'a.vim'
 Plugin 'vim-airline/vim-airline'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -69,6 +70,7 @@ let g:ycm_always_populate_location_list = 1
 nnoremap <Leader>j :YcmCompleter GoTo<CR>
 
 let g:airline#extensions#tabline#enabled = 1
+map <C-Tab> :bn<CR>
 
 " debug
 :packadd termdebug
@@ -78,7 +80,8 @@ set sessionoptions=blank,winsize,tabpages,resize
 
 " clang-format
 " map <C-K> :py3f ./.vim/clang-format.py<cr>
-map = :py3f ~/.vim/clang-format.py<cr>
+"map = :py3f ~/.vim/clang-format.py<cr>
+autocmd FileType c,cpp,objc map <buffer> = :py3f ~/.vim/clang-format.py<cr>
 
 function! Formatonsave()
   let l:formatdiff = 1
