@@ -1,0 +1,16 @@
+1. Search->Desktop sharing
+    1.1 enable sharing
+    1.2 security:
+        uncheck 'You must confirm each access to this machine"
+        check   'Require the user to enter this password'
+
+2. $sudo apt install xrdp
+3. $sudo service xrdp restart
+4. $sudo apt install dconf-editor
+5. $dconf-editor
+    org->gnome->desktop->remote access: uncheck 'require encryption'
+
+
+6. ensure vnc4server xbase-clients are installed. (apt list ***)
+
+    
