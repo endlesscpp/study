@@ -43,6 +43,8 @@ ENDIF()
 
 4.2 gnu make: check Bear.
 options: provide the flags manually.
+$sudo apt install bear
+$bear make
 
 
 compile:
@@ -62,6 +64,8 @@ tips:
 C-W L(attention use L rather than l)
 C-W N(switch between normal mode and insert mode)
 
+:term
+
 
 ###Sessions
 :mksession my.vis   # save
@@ -80,4 +84,10 @@ vim -S my.vis       # open
 1. use the name register. such as the clipboard "+y / "+p
 2. or after paste, use 'gv' to reselect last selected visual area.
 
+### NERDTree
+m / a
+
+### compile
+make
+make -C cmake-build-debug
 

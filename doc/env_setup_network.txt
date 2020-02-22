@@ -1,0 +1,11 @@
+#set ip
+ifconfig eth0 169.254.43.116 netmask 255.255.0.0
+
+#set gateway
+ip route add default via 169.254.43.1 dev eth0
+
+#show gateway
+route -n
+
+#set dns
+echo "nameserver xx.xx.xx.xx" >> /etc/resolv.conf

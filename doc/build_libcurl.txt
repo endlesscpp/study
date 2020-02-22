@@ -1,0 +1,25 @@
+$sudo apt install libssl-dev
+
+#build libcurl
+$autoconf
+$./configure
+$make
+$sudo make install
+
+
+#build sample
+$gcc -o example example.c `curl-config --cflags --libs`
+
+# or static link
+# static library path can be shown by `curl-config --static-libs`
+$gcc simple.c /usr/local/lib/libcurl.a /usr/lib/x86_64-linux-gnu/libssl.a /usr/lib/x86_64-linux-gnu/libcrypto.a -ldl -lz -lpthread
+
+
+
+# libcurl help page:
+https://curl.haxx.se/libcurl/c/libcurl-tutorial.html
+
+# pay attention to:
+https://curl.haxx.se/libcurl/c/threadsafe.html
+curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1);
+

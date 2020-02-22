@@ -1,5 +1,7 @@
 pkg-config --modversion opencv4
 
+apt-get install libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libavresample-dev
+
 ###build shared library
 mkdir build
 cd build

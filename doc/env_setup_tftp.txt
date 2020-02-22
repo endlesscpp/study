@@ -1,0 +1,3 @@
+sudo apt install tftpd-hpa
+vim /etc/default/tftpd-hpa
+service tftpd-hpa restart
