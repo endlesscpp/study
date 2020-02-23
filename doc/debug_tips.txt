@@ -18,3 +18,19 @@ ulimit -c 0
 # check the ulimit
 ulimit -c
 
+#
+#gdb
+#
+
+#set breakpoint
+linenum
+-offset
++offset
+filename:linenum
+function
+function:label
+filename:function
+label
+
+refs:
+https://sourceware.org/gdb/onlinedocs/gdb/Linespec-Locations.html#Linespec-Locations
