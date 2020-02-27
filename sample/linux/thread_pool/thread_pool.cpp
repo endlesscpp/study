@@ -3,22 +3,18 @@
 
 namespace OAK
 {
-
 static void* Worker(void* arg)
 {
     OAK::ThreadPool* pThis = (OAK::ThreadPool*)(arg);
     return pThis->Work();
 }
 
-
 ThreadPool::ThreadPool()
 {
     m_needCancel = 0;
 }
 
-ThreadPool::~ThreadPool()
-{
-}
+ThreadPool::~ThreadPool() {}
 
 int ThreadPool::Create(int maxThreads)
 {
@@ -66,7 +62,7 @@ int ThreadPool::Post(Task* pTask)
     return ret;
 }
 
-int ThreadPool::Run()
+int ThreadPool::Start()
 {
     return 0;
 }
@@ -81,7 +77,6 @@ int ThreadPool::Stop()
 #if DEBUG
     printf("join begin\n");
 #endif
-    int ret = 0;
     for (list<pthread_t>::iterator it = m_threads.begin();
             it != m_threads.end();
             ++it) {

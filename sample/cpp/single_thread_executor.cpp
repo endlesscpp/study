@@ -21,7 +21,7 @@ void SingleThreadExecutor::post(SPTask task) {
     
     {
         std::unique_lock<std::mutex> lock(mMutex);
-        if (mMaxTaskCount > 0 && mTaskQueue.size() >= mMaxTaskCount) {
+        if (mMaxTaskCount > 0 && (int)mTaskQueue.size() >= mMaxTaskCount) {
             mTaskQueue.pop_front();
         }
         mTaskQueue.push_back(task);
