@@ -20,3 +20,6 @@ The content of file.txt
 bt
 quit
 
+cat /proc/sys/kernel/core_pattern
+sysctl -w kernel.core_pattern='/tmp/core_%e.%p'
+
