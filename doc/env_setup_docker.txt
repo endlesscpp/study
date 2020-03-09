@@ -21,6 +21,19 @@ sudo service docker restart
 # switch session to new group
 newgrp - docker
 
+#
+# save / load
+#
+docker save <image_name> -o my.tar
+docker load -i my.tar
+
+#
+# dump
+#
+In host machine:
+$echo '/tmp/core_%e.%p' | sudo tee /proc/sys/kernel/core_pattern
+The core will be generated in /tmp of container
+
 
 refs:
 https://yq.aliyun.com/articles/110806?spm=a2c4e.11153940.blogcont29941.13.520269d6p5XgYC
