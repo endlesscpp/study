@@ -15,6 +15,7 @@ public:
 public:
     void start()
     {
+        mRunning = true;
         mThread = std::thread(&HeartbeatThread::threadEntry, this);
         mThread.detach();
     }
@@ -47,7 +48,7 @@ private:
 
 private:
     std::thread             mThread;
-    bool                    mRunning = true;
+    bool                    mRunning = false;
     std::mutex              mMutex;
     std::condition_variable mCondVar;
 };
