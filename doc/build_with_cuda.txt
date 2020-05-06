@@ -1,0 +1,2 @@
+export CUDA_BIN_PATH=/usr/local/cuda-10.0
+ln -s /usr/local/cuda-10.0 cuda

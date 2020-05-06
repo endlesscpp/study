@@ -62,7 +62,7 @@ nnoremap <Leader>j :YcmCompleter GoTo<CR>
 tips:
 :Termdebug
 C-W L(attention use L rather than l)
-C-W N(switch between normal mode and insert mode)
+C-W N(switch between normal mode and insert mode) (is BIG N, not n)
 
 :term
 
