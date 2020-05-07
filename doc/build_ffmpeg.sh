@@ -25,3 +25,7 @@
 #  --enable-libnpp
 #make
 #make install
+
+
+# Please refer to:
+# https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
