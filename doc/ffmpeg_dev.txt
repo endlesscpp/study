@@ -1,0 +1,1 @@
+1. add '-loglevel debug' on command line param
