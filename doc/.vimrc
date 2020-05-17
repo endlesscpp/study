@@ -84,7 +84,11 @@ nnoremap <Leader>j :YcmCompleter GoTo<CR>
 
 let g:airline#extensions#tabline#enabled = 1
 if has("gui_running")
-let g:airline_theme='silver'
+    let g:airline_theme='silver'
+else
+    " let it work in tmux
+    set background=dark
+    set t_Co=256
 endif
 " map <C-Tab> :bn<CR>
 " map <C-S-Tab> :bp<CR>
@@ -100,9 +104,12 @@ noremap <Leader>e :LeaderfMru<cr>
 
 " debug
 :packadd termdebug
+let g:termdebug_wide=1
+set makeprg=make\ -C\ build
+noremap <silent> <F9> :make<CR><CR>:cw<CR>
 
 " window layout
-set sessionoptions=blank,winsize,tabpages,resize
+set sessionoptions=blank,sesdir,winsize,tabpages,resize
 
 " clang-format
 " map <C-K> :py3f ./.vim/clang-format.py<cr>
