@@ -1,0 +1,18 @@
+# find which static library contains the symbol:
+find . -iname "*.a" | xargs nm -A | grep 'grpc_channel_watch_connectivity_state'
+
+#Build steps (build static library):
+1. $ git clone -b RELEASE_TAG_HERE https://github.com/grpc/grpc
+2. $ cd grpc
+3. $ git submodule update --init
+4. $ mkdir -p cmake/build
+5. $ pushd cmake/build
+6. $ cmake -DgRPC_INSTALL=ON -DgRPC_BUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX="/home/tester/grpc_bin" ../../
+7. make -j 4
+8. sudo make install
+9. copy the plugin & .a to /home/tester/grpc_bin/
+10. popd
+
+#refs:
+https://grpc.io/docs/quickstart/cpp/
+
