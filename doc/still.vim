@@ -25,11 +25,11 @@ hi LineNr       guifg=DarkCyan  guibg=grey80
 " highlight groups
 hi Comment      guifg=forestgreen
 hi Identifier   guifg=DarkCyan
-hi Type         guifg=Blue
-hi statement    guifg=Blue
+hi Type         guifg=Blue                      gui=none
+hi statement    guifg=Blue                      gui=none
 hi Constant     guifg=Black
 hi Function     guifg=#880000
-hi Keyword      guifg=Blue
+hi Keyword      guifg=blue
 hi string       guifg=#A31515
 hi Boolean      guifg=blue
 hi PreProc      guifg=#A000A0
