@@ -1,6 +1,7 @@
 set nocompatible
 filetype off
 
+set encoding=utf-8
 set backspace=indent,eol,start
 set incsearch
 set hlsearch
@@ -32,6 +33,38 @@ set titlestring=%t
 "turn syntax
 syntax on
 
+"if !has("gui_running")
+set timeout timeoutlen=1000 ttimeoutlen=100
+set <M-n>=n
+set <M-p>=p
+set <M-r>=r
+set <S-F3>=[25;*~
+"endif
+
+let g:go_list_type = "quickfix"
+map <M-r> :GoReferrers<cr>
+map <M-n> :cnext<cr>
+map <M-p> :cprevious<cr>
+"map <M-x> :echo "ALT-x pressed"<cr>
+"noremap <S-F4> :echo "ALT-F2 pressed"<cr>
+noremap <F5> :Continue<cr>
+noremap <F7> :Step<cr>
+noremap <S-F7> :Finish<cr>
+noremap <F8> :Over<cr>
+
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+autocmd FileType go nmap <S-F9> :<C-u>call <SID>build_go_files()<CR>
+"autocmd FileType go nmap <S-F9>  <Plug>(go-build)
+autocmd FileType go nmap <C-F5>  <Plug>(go-run)
+
 " key mapping for delete/paste
 "let mapleader = "\<SPACE>"
 let mapleader = ","
@@ -60,6 +93,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'preservim/nerdtree'
 Plugin 'Yggdroot/LeaderF'
+Plugin 'fatih/vim-go'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -80,6 +114,7 @@ set completeopt=longest,menu
 let g:ycm_key_invoke_completion = '<F9>'
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 let g:ycm_always_populate_location_list = 1
+let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>']
 nnoremap <Leader>j :YcmCompleter GoTo<CR>
 
 let g:airline#extensions#tabline#enabled = 1
@@ -109,7 +144,7 @@ set makeprg=make\ -C\ build
 noremap <silent> <F9> :make<CR><CR>:cw<CR>
 
 " window layout
-set sessionoptions=blank,sesdir,winsize,tabpages,resize
+set sessionoptions=blank,winsize,tabpages,resize
 
 " clang-format
 " map <C-K> :py3f ./.vim/clang-format.py<cr>
