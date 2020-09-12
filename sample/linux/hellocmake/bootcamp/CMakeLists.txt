@@ -17,7 +17,8 @@ add_executable(bootcamp ${SRC_LIST})
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 #set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
 
-add_subdirectory(test)
+#add_subdirectory(test)
+add_subdirectory(catch_test)
 
 # if DESTINATION path start with '/', it absolute path; else its relative path
 # to ${CMAKE_INSTALL_PREFIX}
