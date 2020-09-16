@@ -2,6 +2,7 @@
 objdump -h a.out | grep debug
 
 #check the exported symbol in so
+find . -iname "*.a" | xargs nm -CA | grep 'pattern'
 nm -gC libhello.so	# -C demangled the symbol
 objdump -TC libhello.so
 
