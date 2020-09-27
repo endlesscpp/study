@@ -1,0 +1,18 @@
+## Sanitizer
+### refs: https://github.com/google/sanitizers
+$ ../clang_build_Linux/Release+Asserts/bin/clang -fsanitize=address -O1 -fno-omit-frame-pointer -g tests/use-after-free.c
+$ ./a.out
+
+$g++-5 -fsanitize=leak -O0 -fno-omit-frame-pointer -g leak.cpp
+
+#//ignore a particular function
+#if defined(__clang__) || defined (__GNUC__)
+# define ATTRIBUTE_NO_SANITIZE_ADDRESS __attribute__((no_sanitize_address))
+#else
+# define ATTRIBUTE_NO_SANITIZE_ADDRESS
+#endif
+...
+ATTRIBUTE_NO_SANITIZE_ADDRESS
+void ThisFunctionWillNotBeInstrumented() {...}
+
+You may also ignore certain functions using a blacklist: create a file my_ignores.txt and pass it to AddressSanitizer at compile time using -fsanitize-blacklist=my_ignores.txt (This flag is new and is only supported by Clang now):

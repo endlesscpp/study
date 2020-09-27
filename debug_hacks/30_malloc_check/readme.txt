@@ -3,7 +3,7 @@ use MALOC_CHECK_ to debug memory related problem
 $ env MALLOC_CHECK=1 ./a.out
 
 or
-valgrind --tool=memcheck --leak-check=yes ./a.out
+valgrind --tool=memcheck --leak-check=[yes|full] [--track-origins=yes] --log-file=reportleak ./a.out
 
 valgrind --leak-check=full ./a.out
 
