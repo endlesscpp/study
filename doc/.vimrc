@@ -38,6 +38,7 @@ set timeout timeoutlen=1000 ttimeoutlen=100
 set <M-n>=n
 set <M-p>=p
 set <M-r>=r
+set <M-/>=/
 set <S-F3>=[25;*~
 "endif
 
@@ -92,8 +93,11 @@ Plugin 'a.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'preservim/nerdtree'
+Plugin 'preservim/nerdcommenter'
 Plugin 'Yggdroot/LeaderF'
 Plugin 'fatih/vim-go'
+Plugin 'tpope/vim-fugitive'
+Plugin 'endlesscpp/vim-fugitive-blame-ext'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -110,6 +114,18 @@ let NERDTreeMinimalUI=1
 let NERDTreeShowHidden=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+map <C-Tab> :bn<CR>
+map <C-S-Tab> :bp<CR>
+
+" commenter
+let g:NERDCreateDefaultMappings=0
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDCommentEmptyLines = 1
+map <M-/> <plug>NERDCommenterToggle
+map <Leader>cc <plug>NERDCommenterToggle
+
 set completeopt=longest,menu
 let g:ycm_key_invoke_completion = '<F9>'
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
@@ -125,8 +141,6 @@ else
     set background=dark
     set t_Co=256
 endif
-" map <C-Tab> :bn<CR>
-" map <C-S-Tab> :bp<CR>
 "
 
 " LeaderF
@@ -140,8 +154,10 @@ noremap <Leader>e :LeaderfMru<cr>
 " debug
 :packadd termdebug
 let g:termdebug_wide=1
+
 set makeprg=make\ -C\ build
 noremap <silent> <F9> :make<CR><CR>:cw<CR>
+
 
 " window layout
 set sessionoptions=blank,winsize,tabpages,resize

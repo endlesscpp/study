@@ -35,3 +35,13 @@ label
 
 refs:
 https://sourceware.org/gdb/onlinedocs/gdb/Linespec-Locations.html#Linespec-Locations
+
+
+#
+# linux cmd tips
+#
+
+# show mod version
+pkg-config --libs --cflags opencv4
+opcv=`pkg-config --libs --cflags opencv4`
+

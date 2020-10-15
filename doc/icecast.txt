@@ -1,0 +1,4 @@
+https://www.icecast.org/docs/icecast-2.4.1/admin-interface.html
+https://nwgat.ninja/quick-easy-streaming-webm-with-ffmpeg-icecast2/
+https://wiki.xiph.org/Icecast_Server/Streaming_WebM_to_Icecast_with_FFmpeg
+
