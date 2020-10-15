@@ -9,3 +9,7 @@ route -n
 
 #set dns
 echo "nameserver xx.xx.xx.xx" >> /etc/resolv.conf
+
+#show port
+lsof -iPn | grep LISTEN
+netstat -tulpn | grep LISTEN
