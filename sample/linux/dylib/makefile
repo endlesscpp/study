@@ -22,3 +22,7 @@ prog.o: prog.c
 clean:
 	$(RM) *.o prog *.so
 
+# all .o depends on the .c with same name
+# .c.o:
+# gcc -c $<
+
