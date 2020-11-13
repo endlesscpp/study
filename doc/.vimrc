@@ -171,7 +171,7 @@ function! Formatonsave()
   let l:formatdiff = 1
   py3f ~/.vim/clang-format.py
 endfunction
-autocmd BufWritePre *.h,*.c,*.cc,*.cpp call Formatonsave()
+autocmd BufWritePre *.h,*.hpp,*.c,*.cc,*.cpp call Formatonsave()
 
 
 "set color scheme
