@@ -8,6 +8,8 @@ echo "$(setxkbmap -option altwin:meta_win)"
 
 1. how to disable the super key.
 https://askubuntu.com/questions/105558/how-do-i-disable-the-super-key
+$sudo apt-get install compizconfig-settings-manager
+$ccsm->ubuntu unity plugin->launcher->disable the dash
 
 2. config the vpn
 https://www.litcc.com/2016/12/29/Ubuntu16-shadowsocks-pac/
