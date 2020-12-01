@@ -1,0 +1,25 @@
+# save history automatically(.gdb_history be default)
+(gdb) set history save on
+(gdb) set history filename <your_file_name> //[optional]
+we can put them in $HOME/.gdbinit.
+
+# save break points
+(gdb) save breakpoints file-name-to-save
+(gdb) source file-name-to-save
+
+# common commands:
+file a.out
+run [your param]
+x/20xg
+x/20s
+disassem
+bt
+frame [N]
+info reg
+tbreak  // set temporary break point
+ignore <break_num> <count> // ignore breakpoint for count times. such as ignore 1 5
+
+
+
+
+

@@ -35,6 +35,7 @@ label
 
 refs:
 https://sourceware.org/gdb/onlinedocs/gdb/Linespec-Locations.html#Linespec-Locations
+https://wizardforcel.gitbooks.io/100-gdb-tips/content/save-history-commands.html
 
 
 #

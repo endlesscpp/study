@@ -1,0 +1,10 @@
+set history save on
+file stack
+run "this is a very long string to trigger stackoverflow"
+bt
+frame 5
+info reg
+x/20xg $rbp
+x/50s $rbp
+disassem main
+quit

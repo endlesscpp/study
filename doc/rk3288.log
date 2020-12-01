@@ -1,0 +1,2 @@
+On Android, diagnosing kernel crashes often requires a developer to read the /proc/last_kmsg file, which stores previous kernel logs after a reboot. Unfortunately it went missing in Android 6.0.
+It turns out that it was moved to /sys/fs/pstore/console-ramoops . It still works the same way as before (cat /sys/fs/pstore/console-ramoops will display the previous kernel log)
