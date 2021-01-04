@@ -3,6 +3,9 @@
 (gdb) set history filename <your_file_name> //[optional]
 we can put them in $HOME/.gdbinit.
 
+# set pending breakpoint(such as set breakpoints in .gdbinit)
+(gdb) set breakpoint pending on
+
 # save break points
 (gdb) save breakpoints file-name-to-save
 (gdb) source file-name-to-save
@@ -20,6 +23,32 @@ tbreak  // set temporary break point
 ignore <break_num> <count> // ignore breakpoint for count times. such as ignore 1 5
 
 
+# run commands for breakpoint
+b file:linenum
+commands
+end
+
+
+
+# a sample .gdbinit
+
+```bash
+file ffmpeg_g
+set env LD_LIBRARY_PATH libavutil:libavcodec:libswscale:libavdevice:libavfilter:libavformat:libpostproc:libswresample
+set breakpoint pending on
+b libavformat/rtspdec.c:818
+commands
+printf "last_rtcp_ntp_time = %lu\n",((RTPDemuxContext*)rt->rtsp_streams[0]->transport_priv)->last_rtcp_ntp_time
+printf "first_rtcp_ntp_time = %lu\n", ((RTPDemuxContext*)rt->rtsp_streams[0]->transport_priv)->first_rtcp_ntp_time
+printf "range_start_offset = %ld\n", ((RTPDemuxContext*)rt->rtsp_streams[0]->transport_priv)->range_start_offset
+printf "rtcp_ts_offset = %ld\n", ((RTPDemuxContext*)rt->rtsp_streams[0]->transport_priv)->rtcp_ts_offset
+printf "st->time_base.num = %d\n", ((RTPDemuxContext*)rt->rtsp_streams[0]->transport_priv)->st->time_base.num 
+printf "st->time_base.den = %d\n", ((RTPDemuxContext*)rt->rtsp_streams[0]->transport_priv)->st->time_base.den
+continue
+end
+#start -y -i "rtsp://admin:1111@10.4.12.30/1" test.mp4
+run
+```
 
 
 
