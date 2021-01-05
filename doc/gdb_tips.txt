@@ -28,6 +28,26 @@ b file:linenum
 commands
 end
 
+# can also define function
+define adder
+  if $argc == 2
+    print $arg0 + $arg1
+  end
+  if $argc == 3
+    print $arg0 + $arg1 + $arg2
+  end
+end
+
+- combine with eval
+define adder
+  set $i = 0
+  set $sum = 0
+  while $i < $argc
+    eval "set $sum = $sum + $arg%d", $i
+    set $i = $i + 1
+  end
+  print $sum
+end
 
 
 # a sample .gdbinit
@@ -38,7 +58,8 @@ set env LD_LIBRARY_PATH libavutil:libavcodec:libswscale:libavdevice:libavfilter:
 set breakpoint pending on
 b libavformat/rtspdec.c:818
 commands
-printf "last_rtcp_ntp_time = %lu\n",((RTPDemuxContext*)rt->rtsp_streams[0]->transport_priv)->last_rtcp_ntp_time
+set $rtp = (RTPDemuxContext*)rt->rtsp_streams[0]->transport_priv
+printf "last_rtcp_ntp_time = %lu\n",$rtp->last_rtcp_ntp_time
 printf "first_rtcp_ntp_time = %lu\n", ((RTPDemuxContext*)rt->rtsp_streams[0]->transport_priv)->first_rtcp_ntp_time
 printf "range_start_offset = %ld\n", ((RTPDemuxContext*)rt->rtsp_streams[0]->transport_priv)->range_start_offset
 printf "rtcp_ts_offset = %ld\n", ((RTPDemuxContext*)rt->rtsp_streams[0]->transport_priv)->rtcp_ts_offset
