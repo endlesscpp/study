@@ -4,6 +4,7 @@ $ ../clang_build_Linux/Release+Asserts/bin/clang -fsanitize=address -O1 -fno-omi
 $ ./a.out
 
 $g++-5 -fsanitize=leak -O0 -fno-omit-frame-pointer -g leak.cpp
+$g++-5 -fsanitize=address -O0 -fno-omit-frame-pointer -g memory_check.cpp
 
 #//ignore a particular function
 #if defined(__clang__) || defined (__GNUC__)
@@ -16,3 +17,15 @@ ATTRIBUTE_NO_SANITIZE_ADDRESS
 void ThisFunctionWillNotBeInstrumented() {...}
 
 You may also ignore certain functions using a blacklist: create a file my_ignores.txt and pass it to AddressSanitizer at compile time using -fsanitize-blacklist=my_ignores.txt (This flag is new and is only supported by Clang now):
+
+
+
+## used to check address volatile
+### in cmake
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address -fstack-protector-all -g -O0")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=address -fstack-protector-all -g -O0")
+set(CMAKE_SHARED_LINKER_FLAGS "-fsanitize=address")
+### during run
+20   export ASAN_OPTIONS=allocator_may_return_null=0:allow_user_segv_handler=1:report_globals=1:detect_leaks=0
+21   LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libasan.so.4:/usr/lib/x86_64-linux-gnu/libstdc++.so.6 ./runtime/bin/java -jar sample.jar
+
